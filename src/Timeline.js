@@ -8,9 +8,7 @@ const TimelineContainer = styled(Box)(({ theme }) => ({
   height: '400px',
   overflowY: 'auto',
   padding: theme.spacing(2),
-  backgroundColor: '#f9f9f9',
   borderRadius: '16px',
-  boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
 }));
 
 const StepContainer = styled(Box)(({ theme }) => ({

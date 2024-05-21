@@ -14,6 +14,9 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Lexend, Arial',
   },
+  body: {
+    backgroundColor: '#f0f0f0',
+  },
 });
 
 export default theme;

@@ -29,7 +29,7 @@ const Modulos = () => {
   return (
     <Box>
       <Container maxWidth="lg" sx={{ mt: 4 }}>
-        <Typography variant="h4" gutterBottom fontWeight="bold">
+        <Typography variant="h4" gutterBottom fontWeight="bold" sx={{ pb: 5 }}>
           Módulos
         </Typography>
         <Paper

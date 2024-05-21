@@ -19,7 +19,7 @@ const LandingPage = () => {
                         <Link href="#" sx={{ color: '#333', textDecoration: 'none', fontSize: '1rem' }}>
                             Registro
                         </Link>
-                        <Button variant="outlined" sx={{ color: '#5C1D9E', borderColor: '#5C1D9E', borderWidth: 1 }} href='/page1'>
+                        <Button variant="outlined" sx={{ color: '#5C1D9E', borderColor: '#5C1D9E', borderWidth: 1 }} href='/progreso'>
                             Ingresar
                         </Button>
                     </Box>

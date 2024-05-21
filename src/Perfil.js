@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Avatar, Chip, IconButton } from '@mui/material';
+import { Box, Typography, Avatar, Chip, IconButton, Container as MuiContainer } from '@mui/material';
 import { styled } from '@mui/system';
 import EditIcon from '@mui/icons-material/Edit';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -61,53 +61,55 @@ const SocialContainer = styled(Box)(({ theme }) => ({
 
 const Profile = () => {
   return (
-    <ProfileContainer>
-      <CoverPhoto>
-        <IconButton
-          style={{ position: 'absolute', top: '10px', right: '10px' }}
-        >
-          <EditIcon />
-        </IconButton>
-        <ProfilePhoto src="https://via.placeholder.com/120" />
-      </CoverPhoto>
-      <InfoContainer>
-        <Box>
-          <Typography variant="h5">Alan Cruz</Typography>
-          <Typography variant="body1">
-            Estudiante de octavo semestre de ciencias de la computación.
-          </Typography>
-        </Box>
-        <Box>
-          <Typography variant="h6">Acerca de mí</Typography>
-          <Typography variant="body2">
-            Mi experiencia abarca desde la resolución de problemas complejos con
-            algoritmos eficientes hasta el diseño y administración de bases de
-            datos robustas. Ofrezco asesorías en varias materias fundamentales
-            de la carrera y estoy disponible para resolver dudas.
-          </Typography>
-        </Box>
-      </InfoContainer>
-      <Typography variant="h6" align="center" marginTop="20px">Habilidades</Typography>
-      <SkillsContainer>
-        {['Álgebra', 'Gráficas', 'Análisis de algoritmos', 'Lógica computacional', 'Desarrollo backend', 'EDD', 'ICC'].map((skill) => (
-          <Chip key={skill} label={skill} variant="outlined" />
-        ))}
-      </SkillsContainer>
-      <SocialContainer>
-        <IconButton color="inherit">
-          <GitHubIcon />
-        </IconButton>
-        <IconButton color="inherit">
-          <LinkedInIcon />
-        </IconButton>
-        <IconButton color="inherit">
-          <InstagramIcon />
-        </IconButton>
-        <IconButton color="inherit">
-          <FacebookIcon />
-        </IconButton>
-      </SocialContainer>
-    </ProfileContainer>
+    <MuiContainer sx={{ py: 4 }}>
+      <ProfileContainer>
+        <CoverPhoto>
+          <IconButton
+            style={{ position: 'absolute', top: '10px', right: '10px' }}
+          >
+            <EditIcon />
+          </IconButton>
+          <ProfilePhoto src="https://via.placeholder.com/120" />
+        </CoverPhoto>
+        <InfoContainer>
+          <Box>
+            <Typography variant="h5">Alan Cruz</Typography>
+            <Typography variant="body1">
+              Estudiante de octavo semestre de ciencias de la computación.
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6">Acerca de mí</Typography>
+            <Typography variant="body2">
+              Mi experiencia abarca desde la resolución de problemas complejos con
+              algoritmos eficientes hasta el diseño y administración de bases de
+              datos robustas. Ofrezco asesorías en varias materias fundamentales
+              de la carrera y estoy disponible para resolver dudas.
+            </Typography>
+          </Box>
+        </InfoContainer>
+        <Typography variant="h6" align="center" marginTop="20px">Habilidades</Typography>
+        <SkillsContainer>
+          {['Álgebra', 'Gráficas', 'Análisis de algoritmos', 'Lógica computacional', 'Desarrollo backend', 'EDD', 'ICC'].map((skill) => (
+            <Chip key={skill} label={skill} variant="outlined" />
+          ))}
+        </SkillsContainer>
+        <SocialContainer>
+          <IconButton color="inherit">
+            <GitHubIcon />
+          </IconButton>
+          <IconButton color="inherit">
+            <LinkedInIcon />
+          </IconButton>
+          <IconButton color="inherit">
+            <InstagramIcon />
+          </IconButton>
+          <IconButton color="inherit">
+            <FacebookIcon />
+          </IconButton>
+        </SocialContainer>
+      </ProfileContainer>
+    </MuiContainer>
   );
 };
 

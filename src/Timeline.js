@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import chroma from 'chroma-js';
 
 const TimelineContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
@@ -37,11 +38,10 @@ const Line = styled('line')({
   fill: 'none',
 });
 
+
 const getColor = (percentage) => {
-  if (percentage >= 75) return '#76c7c0'; // green
-  if (percentage >= 50) return '#f4c542'; // yellow
-  if (percentage >= 25) return '#f4a142'; // orange
-  return '#f44141'; // red
+  const scale = chroma.scale(['#f44141', '#f4a142', '#f4c542', '#76c7c0']).mode('lch');
+  return scale(percentage / 100).hex();
 };
 
 const generateVerticalSinusoidalPositions = (numSteps, amplitude, frequency) => {

@@ -7,7 +7,9 @@ const steps = [
   { name: 'Inicio', percentage: 10 },
   { name: 'Paso 1', percentage: 25 },
   { name: 'Paso 2', percentage: 50 },
-  { name: 'Paso 3', percentage: 75 },
+  { name: 'Paso 3', percentage: 65 },
+  { name: 'Paso 4', percentage: 85 },
+  { name: 'Paso 5', percentage: 95 },
   { name: 'Paso Final', percentage: 100 },
 ];
 

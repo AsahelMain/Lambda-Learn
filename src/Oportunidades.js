@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, TextField, Chip, List, ListItem, ListItemText, ListItemIcon, IconButton, Paper, Grid, Container as MuiContainer } from '@mui/material';
 import { styled } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
@@ -47,7 +47,6 @@ const OpportunityItem = styled(ListItem)(({ theme }) => ({
         boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
     },
 }));
-
 const opportunities = [
     {
         title: "AI Competency Engineering Apprenticeship Programme",
@@ -70,6 +69,41 @@ const opportunities = [
         deadline: "Dec 22",
         location: "Dominica/Barbados",
     },
+    {
+        title: "Machine Learning and Data Science Bootcamp",
+        description: "Join the Machine Learning and Data Science Bootcamp to gain hands-on experience in AI technologies. Ideal for students and professionals looking to expand their skills.",
+        category: ["Courses", "Workshops"],
+        deadline: "July 15",
+        location: "Online",
+    },
+    {
+        title: "Global Health Fellowship",
+        description: "The Global Health Fellowship offers a unique opportunity to work on public health projects in various countries. Open to graduates in health sciences.",
+        category: ["Fellowships", "Graduate programs"],
+        deadline: "August 30",
+        location: "Various countries",
+    },
+    {
+        title: "Research Internship at the National Institutes of Health",
+        description: "Apply for the NIH Research Internship to gain experience in biomedical research. Ideal for undergraduate students pursuing a career in research.",
+        category: ["Research Internship", "Undergraduate Internship"],
+        deadline: "September 10",
+        location: "Bethesda, MD, USA",
+    },
+    {
+        title: "Tech4Good Hackathon",
+        description: "Participate in the Tech4Good Hackathon to develop innovative solutions for social impact. Open to students and professionals in tech.",
+        category: ["Hackathons", "Workshops"],
+        deadline: "November 5",
+        location: "San Francisco, CA, USA",
+    },
+    {
+        title: "Sustainable Energy Conference",
+        description: "Attend the Sustainable Energy Conference to learn about the latest advancements in renewable energy technologies. Open to students and professionals.",
+        category: ["Conferences", "Programs"],
+        deadline: "April 20",
+        location: "Berlin, Germany",
+    },
 ];
 
 const categories = [
@@ -80,9 +114,37 @@ const categories = [
     "Graduate programs",
     "Undergraduate Internship",
     "Research Internship",
+    "Bootcamps",
+    "Training Programs",
+    "Hackathons",
+    "Conferences",
+    "Competitions",
+    "Scholarships"
 ];
 
+
 const SearchAndFilter = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState([]);
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategories((prevCategories) =>
+            prevCategories.includes(category)
+                ? prevCategories.filter((cat) => cat !== category)
+                : [...prevCategories, category]
+        );
+    };
+
+    const filteredOpportunities = opportunities.filter((opportunity) => {
+        const matchesSearchTerm = opportunity.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategories = selectedCategories.length === 0 || selectedCategories.some((category) => opportunity.category.includes(category));
+        return matchesSearchTerm && matchesCategories;
+    });
+
     return (
         <Box>
             <MuiContainer maxWidth="lg" sx={{ mt: 4 }}>
@@ -96,7 +158,13 @@ const SearchAndFilter = () => {
                                 Buscar
                             </Typography>
                             <SearchContainer>
-                                <TextField variant="outlined" placeholder="Buscar..." fullWidth />
+                                <TextField
+                                    variant="outlined"
+                                    placeholder="Buscar..."
+                                    fullWidth
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                />
                                 <IconButton>
                                     <SearchIcon />
                                 </IconButton>
@@ -106,7 +174,13 @@ const SearchAndFilter = () => {
                             </Typography>
                             <FilterContainer>
                                 {categories.map((category) => (
-                                    <Chip key={category} label={category} clickable />
+                                    <Chip
+                                        key={category}
+                                        label={category}
+                                        clickable
+                                        color={selectedCategories.includes(category) ? 'primary' : 'default'}
+                                        onClick={() => handleCategoryClick(category)}
+                                    />
                                 ))}
                             </FilterContainer>
                         </Sidebar>
@@ -117,7 +191,7 @@ const SearchAndFilter = () => {
                                 Basado en tu perfil
                             </Typography>
                             <List>
-                                {opportunities.map((opportunity, index) => (
+                                {filteredOpportunities.map((opportunity, index) => (
                                     <OpportunityItem key={index}>
                                         <Box>
                                             <Typography variant="h6">{opportunity.title}</Typography>

@@ -20,7 +20,7 @@ const ProfileContainer = styled(Box)(({ theme }) => ({
 const CoverPhoto = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '200px',
-  backgroundImage: 'url(https://via.placeholder.com/900x200)',
+  backgroundImage: 'url(https://images.unsplash.com/photo-1594904351111-a072f80b1a71?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   borderRadius: '16px 16px 0 0',
@@ -69,17 +69,17 @@ const Profile = () => {
           >
             <EditIcon />
           </IconButton>
-          <ProfilePhoto src="https://via.placeholder.com/120" />
+          <ProfilePhoto src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
         </CoverPhoto>
-        <InfoContainer>
+        <InfoContainer style={{paddingTop:80}}>
           <Box>
-            <Typography variant="h5">Alan Cruz</Typography>
+            <Typography variant="h5">Acerca de mí</Typography>
             <Typography variant="body1">
               Estudiante de octavo semestre de ciencias de la computación.
             </Typography>
           </Box>
           <Box>
-            <Typography variant="h6">Acerca de mí</Typography>
+            <Typography variant="h6">Alan Cruz</Typography>
             <Typography variant="body2">
               Mi experiencia abarca desde la resolución de problemas complejos con
               algoritmos eficientes hasta el diseño y administración de bases de

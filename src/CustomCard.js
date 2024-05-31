@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Rating } from '@mui/material';
 import { styled } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 const CardContainer = styled(Box)(({ theme, bgcolor }) => ({
   backgroundColor: bgcolor || 'white',
@@ -25,16 +26,19 @@ const Header = styled(Box)(({ theme, headerColor }) => ({
 
 const CustomCard = ({ title, step, rating, bgcolor, headerColor }) => {
   return (
-    <CardContainer bgcolor={bgcolor}>
-      <Header headerColor={headerColor} />
-      <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 2 }}>
-        {title}
-      </Typography>
-      <Typography variant="body1" sx={{ mb: 2 }}>
-        Paso {step}
-      </Typography>
-      <Rating value={rating} precision={0.5} readOnly />
-    </CardContainer>
+    <Link to="/modulo/1" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <CardContainer bgcolor={bgcolor} >
+
+        <Header headerColor={headerColor} />
+        <Typography variant="h5" sx={{ fontWeight: 'bold', mt: 2 }}>
+          {title}
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          Paso {step}
+        </Typography>
+        <Rating value={rating} precision={0.5} readOnly />
+
+      </CardContainer></Link>
   );
 };
 

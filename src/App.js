@@ -9,6 +9,8 @@ import Oportunidades from './Oportunidades'; // Nuevo componente
 import Mensajes from './Mensajes';
 import Perfil from './Perfil'; // Nuevo componente
 import Configuracion from './Configuracion'; // Nuevo componente
+import Modulo from './Modulo'; // Nuevo componente
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
@@ -30,7 +32,7 @@ function AppContent() {
           <Route path="/configuracion" element={<Configuracion />} />
           <Route path="/oportunidades" element={<Oportunidades />} />
           <Route path="/foro" element={<Foro />} />
-
+          <Route path="/modulo/:id" element={<Modulo />} />
 
 
 

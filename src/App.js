@@ -10,6 +10,7 @@ import Mensajes from './Mensajes';
 import Perfil from './Perfil'; // Nuevo componente
 import Configuracion from './Configuracion'; // Nuevo componente
 import Modulo from './Modulo'; // Nuevo componente
+import About from './AboutPage'; // Nuevo componente
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
@@ -33,7 +34,6 @@ function AppContent() {
           <Route path="/oportunidades" element={<Oportunidades />} />
           <Route path="/foro" element={<Foro />} />
           <Route path="/modulo/:id" element={<Modulo />} />
-
 
 
         </Routes>

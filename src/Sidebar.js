@@ -88,7 +88,7 @@ const Sidebar = () => {
     return (
         <Box>
             {isMobile ? (
-                <Box sx={{ display: 'row', justifyContent: 'space-between', alignItems: 'center', p: 1, bgcolor: '#2D0353', borderRadius: 3, color: 'white',margin:1 }}>
+                <Box sx={{ position:"absolute"}}>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' ,padding:1,margin:0}}>
                         <MenuIcon />
                     </IconButton>

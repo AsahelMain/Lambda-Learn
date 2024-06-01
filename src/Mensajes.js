@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, List, ListItem, ListItemText, Avatar } from '@mui/material';
+import { Box, Typography, TextField, List, ListItem, ListItemText, Avatar, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import chroma from 'chroma-js';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Container = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexDirection: 'column',
   height: '95vh',
   backgroundColor: '#f0f0f0',
-  borderRadius: '10px'
+  borderRadius: '10px',
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+  },
 }));
 
 const Sidebar = styled(Box)(({ theme }) => ({
-  width: '300px',
+  width: '100%',
   backgroundColor: '#f8f8ff',
   padding: theme.spacing(2),
-  borderRight: '1px solid #ddd',
-  borderTopLeftRadius: '10px',
-  borderBottomLeftRadius: '10px',
+  borderBottom: '1px solid #ddd',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  [theme.breakpoints.up('md')]: {
+    width: '300px',
+    borderBottom: 'none',
+    borderRight: '1px solid #ddd',
+  },
 }));
 
 const ChatArea = styled(Box)(({ theme }) => ({
@@ -26,9 +34,11 @@ const ChatArea = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   padding: theme.spacing(2),
   backgroundColor: '#e6f7f7',
-  borderTopRightRadius: '10px',
-  borderBottomRightRadius: '10px',
   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+  [theme.breakpoints.up('md')]: {
+    borderTopRightRadius: '10px',
+    borderBottomRightRadius: '10px',
+  },
 }));
 
 const Header = styled(Box)(({ theme }) => ({
@@ -61,8 +71,7 @@ const MessageContent = styled(Box)(({ theme, isSender }) => ({
 const MessageInput = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: '#fff',
-  
+  padding: theme.spacing(1),
 }));
 
 const getColor = (percentage) => {
@@ -71,7 +80,6 @@ const getColor = (percentage) => {
 };
 
 const ChatApp = () => {
-
   const [currentUser, setCurrentUser] = useState('Alan Cruz');
   const [messages, setMessages] = useState({
     'Alexys Gómez': [
@@ -98,32 +106,42 @@ const ChatApp = () => {
     ],
   });
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const handleUserClick = (name) => {
     setCurrentUser(name);
+    if (window.innerWidth < 960) {
+      setIsSidebarOpen(false);
+    }
   };
 
   return (
     <Container>
-      <Sidebar>
-        <TextField
-          variant="outlined"
-          placeholder="Buscar chats..."
-          fullWidth
-          margin="dense"
-        />
-        <List>
-          {Object.keys(messages).map((name) => (
-            <ListItem button key={name} onClick={() => handleUserClick(name)}>
-              <Avatar style={{ backgroundColor: getColor(name.charCodeAt(0) % 100) }}>
-                {name.charAt(0)}
-              </Avatar>
-              <ListItemText primary={name} style={{ paddingLeft: 10 }} />
-            </ListItem>
-          ))}
-        </List>
-      </Sidebar>
+      {isSidebarOpen && (
+        <Sidebar>
+          <TextField
+            variant="outlined"
+            placeholder="Buscar chats..."
+            fullWidth
+            margin="dense"
+          />
+          <List>
+            {Object.keys(messages).map((name) => (
+              <ListItem button key={name} onClick={() => handleUserClick(name)}>
+                <Avatar style={{ backgroundColor: getColor(name.charCodeAt(0) % 100) }}>
+                  {name.charAt(0)}
+                </Avatar>
+                <ListItemText primary={name} style={{ paddingLeft: 10 }} />
+              </ListItem>
+            ))}
+          </List>
+        </Sidebar>
+      )}
       <ChatArea>
         <Header>
+          <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            <MenuIcon />
+          </IconButton>
           <Avatar style={{ backgroundColor: getColor(currentUser.charCodeAt(0) % 100) }}>
             {currentUser.charAt(0)}
           </Avatar>
@@ -144,6 +162,9 @@ const ChatApp = () => {
             placeholder="Escribir..."
             fullWidth
             margin="dense"
+            InputProps={{
+              style: { background: 'white' } // Cambia 'blue' al color que desees
+            }}
           />
         </MessageInput>
       </ChatArea>

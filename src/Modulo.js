@@ -10,8 +10,8 @@ const VideoContent1 = () => (
 );
 
 const VideoContent2 = () => (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '515px', backgroundColor: '#f5f5f5' }}>
-        <iframe width="800" height="315" src="https://www.youtube.com/embed/cZaNf2rA30k" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '615px', backgroundColor: '#f5f5f5' }}>
+        <iframe width="800" height="615" src="https://www.youtube.com/embed/cZaNf2rA30k" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
     </Box>
 );
 
@@ -65,11 +65,11 @@ const FormContent = ({ setAnswers }) => {
 };
 
 const EmbeddedPageContent1 = () => (
-    <iframe title="Embedded Page 1" src="https://karpathy.github.io/2019/04/25/recipe/" style={{ width: '100%', height: '315px', border: 'none' }} />
+    <iframe title="Embedded Page 1" src="https://karpathy.github.io/2019/04/25/recipe/" style={{ width: '100%', height: '715px', border: 'none' }} />
 );
 
 const EmbeddedPageContent2 = () => (
-    <iframe title="Embedded Page 2" src="https://karpathy.github.io/2022/03/14/lecun1989/" style={{ width: '100%', height: '315px', border: 'none' }} />
+    <iframe title="Embedded Page 2" src="https://karpathy.github.io/2022/03/14/lecun1989/" style={{ width: '100%', height: '715px', border: 'none' }} />
 );
 
 const CompletionContent = ({ answers }) => {
@@ -103,7 +103,7 @@ const CompletionContent = ({ answers }) => {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '315px', backgroundColor: '#f5f5f5', p: 3 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '315px', p: 3 }}>
             <Typography variant="h5">¡Has completado todos los módulos!</Typography>
             <Typography variant="h6">Puntaje: {score} de {totalQuestions}</Typography>
             <Chart chartType="ColumnChart" width="100%" height="300px" data={data} options={options} />
@@ -139,7 +139,7 @@ const ModuleStepper = () => {
     };
 
     return (
-        <MuiContainer maxWidth="md" sx={{ mt: 4 }}>
+        <MuiContainer maxWidth="lg" sx={{ mt: 4 }}>
             <Typography variant="h4" gutterBottom fontWeight="bold" sx={{ pb: 5 }}>
                 Módulo Seleccionado
             </Typography>

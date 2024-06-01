@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Typography, Box, Container, Grid, Paper, InputBase, IconButton, List, ListItem, ListItemText, Avatar } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ChatIcon from '@mui/icons-material/Chat';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 const forumTopics = [
   { title: "¿Cómo aprender React?", author: "Carlos Pérez", replies: 12, avatar: "https://via.placeholder.com/40" },
@@ -26,9 +30,24 @@ const forumTopics = [
   { title: "Desarrollo de chatbots", author: "Patricia Jiménez", replies: 8, avatar: "https://via.placeholder.com/40" },
 ];
 
+const personas = [
+  { name: "Selene Martínez", avatar: "https://via.placeholder.com/40" },
+  { name: "Asahel Main", avatar: "https://via.placeholder.com/40" },
+  { name: "Zuri Uribe", avatar: "https://via.placeholder.com/40" },
+  { name: "Carlos Pérez", avatar: "https://via.placeholder.com/40" },
+  { name: "Ana Gómez", avatar: "https://via.placeholder.com/40" },
+  { name: "Luis Hernández", avatar: "https://via.placeholder.com/40" },
+];
+
+const updates = [
+  { author: "Zuri UG", time: "14:00hrs", content: "Me enteré que el Miércoles por la noche tomaron la facultad ¿Es cierto?" },
+  { author: "Alexys Gómez", time: "15:00hrs", content: "No creo que sea cierto, a esa hora ya debieron estar durmiendo" },
+  { author: "Selene Marisol", time: "5min", content: "Debido a esas noticias, y que el semestre terminará pronto, todos tienen 10." },
+];
 
 const Foro = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [personaIndex, setPersonaIndex] = useState(0);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -38,13 +57,72 @@ const Foro = () => {
     topic.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const nextPersonas = () => {
+    setPersonaIndex((prevIndex) => (prevIndex + 3) % personas.length);
+  };
+
+  const prevPersonas = () => {
+    setPersonaIndex((prevIndex) => (prevIndex - 3 + personas.length) % personas.length);
+  };
+
+  const displayedPersonas = personas.slice(personaIndex, personaIndex + 3);
+
   return (
     <Box>
       <Container maxWidth="lg" sx={{ mt: 4 }}>
         <Typography variant="h4" gutterBottom fontWeight="bold" sx={{ pb: 5 }}>
           Foro
         </Typography>
-        <Grid container justifyContent="center">
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Paper elevation={3} sx={{ p: 2, mb: 4, borderRadius: '16px' }}>
+              <Typography variant="h6" gutterBottom>
+                Personas
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <IconButton onClick={prevPersonas}>
+                  <ArrowBackIosIcon />
+                </IconButton>
+                {displayedPersonas.map((persona, index) => (
+                  <Box key={index} sx={{ mx: 2, textAlign: 'center' }}>
+                    <Avatar src={persona.avatar} sx={{ width: 40, height: 50 }} />
+                    <Typography>{persona.name}</Typography>
+                  </Box>
+                ))}
+                <IconButton onClick={nextPersonas}>
+                  <ArrowForwardIosIcon />
+                </IconButton>
+              </Box>
+            </Paper>
+            <Paper elevation={3} sx={{ p: 2, borderRadius: '16px' }}>
+              <Typography variant="h6" gutterBottom>
+                Actualización del paro
+              </Typography>
+              <List>
+                {updates.map((update, index) => (
+                  <ListItem key={index}>
+                    <ListItemText
+                      primary={update.author}
+                      secondary={
+                        <React.Fragment>
+                          <Typography component="span" variant="body2" color="text.primary">
+                            {update.time}
+                          </Typography>
+                          {" — " + update.content}
+                        </React.Fragment>
+                      }
+                    />
+                    <IconButton edge="end">
+                      <FavoriteBorderIcon />
+                    </IconButton>
+                    <IconButton edge="end">
+                      <BookmarkBorderIcon />
+                    </IconButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Paper>
+          </Grid>
           <Grid item xs={12} md={8}>
             <Paper
               component="form"
@@ -79,7 +157,6 @@ const Foro = () => {
                   </ListItem>
                 ))}
               </List>
-              
             </Paper>
           </Grid>
         </Grid>
